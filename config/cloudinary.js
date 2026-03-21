@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const cloudinary = require ('cloudinary').v2;
 
 const api_secret = process.env.API_SECRET
