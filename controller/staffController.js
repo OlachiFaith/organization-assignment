@@ -7,12 +7,13 @@ exports.addStaff = async (req, res) => {
   const staffDp = req.files.staffDp;
 
   try {
-    const { name, position, salary } = req.body;
+    const { name, position, salary, Organizationid } = req.body;
     const staffDpResult = await cloudinary.uploader.upload(staffDp[0].path);
     const sd = {
       secureUrl: staffDpResult.secure_url,
       publicId: staffDpResult.public_id,
     };
+    console.log(staffDp[0].path)
     fs.unlinkSync(staffDp[0].path);
 
     const profilePhotoResult = profilePhoto.map((e) => e.path);
@@ -39,6 +40,7 @@ exports.addStaff = async (req, res) => {
         name,
         position,
         salary,
+        Organizationid,
         staffDp: sd,
         profilePhotos: profilePublicIds
     };

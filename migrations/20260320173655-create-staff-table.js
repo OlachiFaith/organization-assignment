@@ -9,11 +9,11 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },
-      Organizationid: {
+      OrganizationId: {
         allowNull: false,
         type: Sequelize.UUID,
         references: {
-          model: 'Organisations',
+          model: 'Organizations',
           key: 'id'
         }
       },

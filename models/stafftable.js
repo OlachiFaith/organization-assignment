@@ -13,16 +13,16 @@ Stafftable.init(
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
     },
-    // Organizationid: {
-    //   allowNull: false,
-    //   type: DataTypes.UUID,
-    //   references: {
-    //     model: "Organizations",
-    //     key: "id",
-    //   },
-    //   onDelete: "CASCADE",
-    //   onUpdate: "CASCADE",
-    // },
+    Organizationid: {
+      allowNull: false,
+      type: DataTypes.UUID,
+      references: {
+        model: "Organization",
+        key: "id",
+      },
+      onDelete: "CASCADE",
+      onUpdate: "CASCADE",
+     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -60,14 +60,14 @@ Stafftable.init(
   },
 );
 
-// Organization.hasMany(Stafftable, {
-//   foreignKey: 'organizationId',
-//   as: 'organization'
-// })
+Organization.hasMany(Stafftable, {
+  foreignKey: 'organizationId',
+  as: 'staffs'
+})
 
-// Stafftable.belongsTo(Organization,{
-//   foreignKey: 'organizationId',
-//   as: 'stafftable'
-// })
+Stafftable.belongsTo(Organization,{
+  foreignKey: 'organizationId',
+  as: 'organization'
+})
 
 module.exports = Stafftable;
