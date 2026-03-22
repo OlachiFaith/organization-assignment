@@ -4,6 +4,7 @@ const PORT = process.env.PORT || 7070
 const sequelize = require('./database/database');
 const organizationRouter = require('./routes/organizationRouter')
 const StaffRouter = require('./routes/staffRouter');
+const orderRouter = require('./routes/orderRouter')
 const equipmentRouter = require('./routes/equipment');
 
 const app = express();
@@ -12,6 +13,9 @@ app.use(express.json());
 
 app.use(organizationRouter);
 
+app.use(StaffRouter);
+
+app.use(orderRouter)
 app.use(StaffRouter)
 app.use(equipmentRouter);
 
