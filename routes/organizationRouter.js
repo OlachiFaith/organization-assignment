@@ -2,8 +2,12 @@ const router = require('express').Router()
 const upload  = require('../middleware/multer')
 
 // const { router } = require('express')
-const {createOrganization}= require('../controller/organizationController')
+const {createOrganization, getOrganizations, getOrganization}= require('../controller/organizationController')
 
-router.post('/Organization', upload.single('Logo'), createOrganization)
+router.post('/Organization', upload.single('Logo'), createOrganization);
+
+router.get('/Organization', getOrganizations);
+
+router.get('/Organization/:id', getOrganization)
 
 module.exports = router
