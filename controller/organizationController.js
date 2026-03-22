@@ -32,6 +32,7 @@ console.log(organizationData)
             data:organization
         })
     } catch (error) {
+        console.log(error)
         fs.unlinkSync(req.file.path)
         res.status(500).json({
             message:error.message

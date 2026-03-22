@@ -2,16 +2,19 @@ require('dotenv').config();
 const express = require('express');
 const PORT = process.env.PORT || 7070
 const sequelize = require('./database/database');
-// const productRouter = require('./routes/productRouter')
-const organizationRouter = require('./router/organizationRouter')
+const organizationRouter = require('./routes/organizationRouter')
+const StaffRouter = require('./routes/staffRouter');
+const equipmentRouter = require('./routes/equipment');
 
 const app = express();
 
 app.use(express.json());
 
-app.use(organizationRouter)
+app.use(organizationRouter);
 
-// app.use(productRouter)
+app.use(StaffRouter)
+app.use(equipmentRouter);
+
 
 const DB = async () => {
     try {

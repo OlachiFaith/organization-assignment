@@ -32,4 +32,4 @@ const upload =multer({
     limits
 })
 
-module.exports = {upload}
+module.exports = upload;

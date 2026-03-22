@@ -2,52 +2,52 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Organizations', {
+    await queryInterface.createTable('staffTables', {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },
-      Logo: {
-        type: Sequelize.STRING,
-        allowNull: false
-
-      },
-      LogoPublicId: {
-        type: Sequelize.STRING,
-        allowNull: false
-
-      },
-      Name: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      Address: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      email: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      phoneNumber: {
-        type: Sequelize.STRING,
+      OrganizationId: {
         allowNull: false,
-
+        type: Sequelize.UUID,
+        references: {
+          model: 'Organizations',
+          key: 'id'
+        }
+      },
+      name: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      position: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      staffDp: {
+        type: Sequelize.JSON,
+        allowNull: false
+      },
+      profilePhotos: {
+        type: Sequelize.JSON,
+        allowNull: false
+      },
+      salary: {
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       createdAt: {
-        type: Sequelize.DATE,
-        allowNull: false
-
+        allowNull: false,
+        type: Sequelize.DATE
       },
       updatedAt: {
-        type: Sequelize.DATE,
-        allowNull: false
+        allowNull: false,
+        type: Sequelize.DATE
       }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Organizations');
+    await queryInterface.dropTable('staffTables');
   }
 };
