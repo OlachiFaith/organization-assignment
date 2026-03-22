@@ -36,7 +36,7 @@ exports.addStaff = async (req, res) => {
       }),
     );
 
-    const productData = {
+    const staffData = {
         name,
         position,
         salary,
@@ -45,11 +45,11 @@ exports.addStaff = async (req, res) => {
         profilePhotos: profilePublicIds
     };
     
-    const product = await staffModel.create(productData);
+    const staff = await staffModel.create(staffData);
 
     res.status(201).json({
-        message: 'Product Added Successfully',
-        data: product
+        message: 'Staff Added Successfully',
+        data: staff
     })
   } catch (error) {
     console.log(error);
