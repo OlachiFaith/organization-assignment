@@ -9,6 +9,15 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue:Sequelize.UUIDV4
       },
+      orderId: {
+        type: Sequelize.UUID,  
+        allowNull:false,
+        references:{
+          model:'Orders',
+          key:'id'
+        }
+
+      },
       processedBy: {
         type: Sequelize.STRING,
         allowNull: false
@@ -21,15 +30,6 @@ module.exports = {
       clothes: {
         type: Sequelize.STRING,
         allowNull: false
-      },
-      orderId: {
-        type: Sequelize.INTEGER,  
-        allowNull:false,
-        references:{
-          model:'orders',
-          key:'id'
-        }
-
       },
       createdAt: {
         allowNull: false,

@@ -17,7 +17,7 @@ Stafftable.init(
       allowNull: false,
       type: DataTypes.UUID,
       references: {
-        model: "Organization",
+        model: "Organizations",
         key: "id",
       },
       onDelete: "CASCADE",
@@ -61,12 +61,12 @@ Stafftable.init(
 );
 
 Organization.hasMany(Stafftable, {
-  foreignKey: 'organizationId',
+  foreignKey: 'Organizationid',
   as: 'staffs'
 })
 
 Stafftable.belongsTo(Organization,{
-  foreignKey: 'organizationId',
+  foreignKey: 'Organizationid',
   as: 'organization'
 })
 

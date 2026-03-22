@@ -1,17 +1,18 @@
-const delivery = require('../models/deliverytable')
+const deliveryModel = require('../models/deliverytable')
 
 exports.createDelivery = async(req, res)=>{
     try {
-        const{processedBY, Status, Clothes, orderId}= req.body
+        const{ processedBy, status, clothes, orderId}= req.body
 
-        const delivery = await delivery.create({
-            processedBY,
-            Status,
-            Clothes,
+        const delivery = await deliveryModel.create({
+            processedBy,
+            status,
+            clothes,
             orderId
         })
         res.status(201).json({
-            message:"delivered"
+            message:"delivered",
+            data: delivery
         })
 
     } catch (error) {

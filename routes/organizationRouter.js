@@ -1,15 +1,15 @@
 
+// const { router } = require('express')
+const {createOrganization, getOrganizations, getOrganization}= require('../controller/organizationController')
 const router = require('express').Router();
 const upload  = require('../middleware/multer');
 
-// const router = require('express').Router()
-// const upload  = require('../middleware/multer')
 
 
-const { createOrganization } = require('../controller/organizationController');
+router.post('/Organization', upload.single('Logo'), createOrganization);
 
-// router.post('/Organization', upload.single('logo'), createOrganization);
+router.get('/Organization', getOrganizations);
 
-router.post('/Organization', upload.single('Logo'), createOrganization)
+router.get('/Organization/:id', getOrganization)
 
 module.exports = router;

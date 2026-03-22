@@ -17,7 +17,7 @@ Orders.init(
       allowNull: false,
       type: DataTypes.UUID,
       references: {
-        model: "Organization",
+        model: "Organizations",
         key: "id",
       },
       onDelete: "CASCADE",
@@ -82,12 +82,12 @@ Orders.init(
 );
 
 Organization.hasMany(Orders, {
-  foreignKey: 'organizationId',
+  foreignKey: 'Organizationid',
   as: 'orders'
 })
 
 Orders.belongsTo(Organization,{
-  foreignKey: 'organizationId',
+  foreignKey: 'Organizationid',
   as: 'organization'
 })
 
