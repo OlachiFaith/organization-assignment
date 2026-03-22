@@ -47,9 +47,8 @@ console.log(organizationData)
 exports.getOrganizations = async (req, res) => {
     try {
         const organizations = await organizationModel.findAll({
-            include: { model: Stafftable, as: 'staffs', attributes: ['name','staffDp']},
-            include: { model: Orders, as: 'orders'},
-            include: { model: Equipment, as: 'Equipments', attributes: ['name','images']},
+            include: [{ model: Stafftable, as: 'staffs', attributes: ['name','staffDp']}, { model: Orders, as: 'orders'},
+             { model: Equipment, as: 'Equipments', attributes: ['name','images']}],
              attribute: ['Name']
         });
 
@@ -68,10 +67,9 @@ exports.getOrganization = async (req, res) => {
     try {
 
         const { id } = req.params
-        const organization = await organizationModel.findByPk(id, {
-            include: { model: Stafftable, as: 'staffs', attributes: ['name','staffDp']},
-            include: { model: Orders, as: 'orders'},
-            include: { model: Equipment, as: 'Equipments', attributes: ['name','images']},
+        const organization = await organizationModel.findByPk(id,{
+            include: [{ model: Stafftable, as: 'staffs', attributes: ['name','staffDp']}, { model: Orders, as: 'orders'},
+             { model: Equipment, as: 'Equipments', attributes: ['name','images']}],
              attribute: ['Name']
         });
         if (!organization) {

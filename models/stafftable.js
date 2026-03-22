@@ -62,12 +62,12 @@ Stafftable.init(
 
 Organization.hasMany(Stafftable, {
   foreignKey: 'Organizationid',
-  as: 'Organization'
+  as: 'staffs'
 })
 
 Stafftable.belongsTo(Organization,{
   foreignKey: 'Organizationid',
-  as: 'staffs'
+  as: 'organization'
 })
 
 module.exports = Stafftable;

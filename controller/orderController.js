@@ -1,6 +1,7 @@
 const orderModel = require('../models/orders.js');
 const fs = require('fs')
-const cloudinary = require('../config/cloudinary.js')
+const cloudinary = require('../config/cloudinary.js');
+const deliveryTables = require('../models/deliverytable.js');
 
 exports.addOrder = async (req, res)=> {
     try {
@@ -46,6 +47,50 @@ exports.addOrder = async (req, res)=> {
         // req.files.forEach((element) => {
         //     fs.unlinkSync(element.path)
         // })
+        res.status(500).json({
+            message: error.message
+        })
+    }
+};
+
+exports.getOrders = async (req, res) => {
+    try {
+        const orders = await orderModel.findAll({
+            include: { model: deliveryTables, as: 'Delivery', attributes: ['processedBy','status']},
+        });
+
+        res.status(200).json({
+            message:    `All Orders found and the Total is: ${orders.length}`,
+            data: orders
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
+    }
+};
+
+exports.getOrder = async (req, res) => {
+    try {
+
+        const { id } = req.params
+        const order = await orderModel.findByPk(id,{
+             include: { model: deliveryTables, as: 'Delivery', attributes: ['processedBy','status']},
+        });
+        if (!order) {
+            return res.status(404).json({
+                message: 'Order not found',
+                data: order
+            })
+        }
+
+        res.status(200).json({
+            message:    `Order with ID: ${id} found`,
+            data: order
+        })
+
+        // 
+    } catch (error) {
         res.status(500).json({
             message: error.message
         })

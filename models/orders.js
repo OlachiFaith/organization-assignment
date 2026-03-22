@@ -83,12 +83,12 @@ Orders.init(
 
 Organization.hasMany(Orders, {
   foreignKey: 'Organizationid',
-  as: 'organization'
+  as: 'orders'
 })
 
 Orders.belongsTo(Organization,{
   foreignKey: 'Organizationid',
-  as: 'orders'
+  as: 'organization'
 })
 
 module.exports = Orders;
